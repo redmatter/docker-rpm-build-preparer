@@ -15,6 +15,27 @@ SOURCE_DIR=/source
 SOURCES_OUTPUT=/output/SOURCES
 SPECS_OUTPUT=/output/SPECS
 
+if [[ ! "$(ls -A ${SOURCE_DIR})" ]]; then
+    echo "${SOURCE_DIR} is empty, checking for VCS configuration"
+    if [[ ! -z ${SVN_URL} ]]; then
+        echo "SVN_URL=${SVN_URL}, using this to get source"
+        SVN_EXPORT_CMD="svn export"
+        if [[ ! -z SVN_OPTIONS ]]; then
+            SVN_EXPORT_CMD="${SVN_EXPORT_CMD} ${SVN_OPTIONS}"
+        fi
+        SVN_EXPORT_CMD="${SVN_EXPORT_CMD} ${SVN_URL} ${SOURCE_DIR}/export"
+
+        echo "Executing: ${SVN_EXPORT_CMD}"
+        ${SVN_EXPORT_CMD} || exit 1
+
+        # Update the source directory to the location of the exported source
+        SOURCE_DIR="${SOURCE_DIR}/export"
+    else
+        echo "${SOURCE_DIR} is empty but no VCS configuration was found"
+        exit 1
+    fi
+fi
+
 if [[ -z ${SPEC_FILE} ]]; then
     NUM_SPEC_FILES=$(find ${SOURCE_DIR} -maxdepth 1 -name '*.spec' | wc -l)
     if [[ ${NUM_SPEC_FILES} != "1" ]]; then

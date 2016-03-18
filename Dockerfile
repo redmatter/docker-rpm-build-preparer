@@ -1,5 +1,8 @@
 FROM alpine
 
+RUN apk update && \
+    apk add subversion openssh-client
+
 COPY prepare-source.sh /
 
 ENV SPEC_FILE= \
