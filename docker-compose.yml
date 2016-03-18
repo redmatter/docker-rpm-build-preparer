@@ -1,5 +1,5 @@
-rpm-source-preparer:
-    image: rpm-source-preparer
+rpm-build-preparer:
+    image: redmatter/rpm-build-preparer
     environment:
         - APP_NAME=${APP_NAME}
         - VERSION=${VERSION}
