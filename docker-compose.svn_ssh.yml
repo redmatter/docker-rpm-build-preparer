@@ -1,0 +1,13 @@
+rpm-source-preparer:
+    image: rpm-source-preparer
+    environment:
+        - APP_NAME=${APP_NAME}
+        - VERSION=${VERSION}
+        - SVN_URL=${SVN_URL}
+        - SVN_OPTIONS=${SVN_OPTIONS}
+        - SSH_AUTH_SOCK=${SSH_AUTH_SOCK}
+    volumes:
+        - ${OUTPUT_DIR}/SOURCES:/output/SOURCES
+        - ${OUTPUT_DIR}/SPECS:/output/SPECS
+        - ${SSH_AUTH_SOCK}:${SSH_AUTH_SOCK}
+        - ${SSH_CONFIG_PATH}:/etc/ssh/ssh_config
