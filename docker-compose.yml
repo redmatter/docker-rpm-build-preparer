@@ -1,0 +1,9 @@
+rpm-source-preparer:
+    image: rpm-source-preparer
+    environment:
+        - APP_NAME=${APP_NAME}
+        - VERSION=${VERSION}
+    volumes:
+        - ${SOURCE_DIR}:/source
+        - ${OUTPUT_DIR}/SOURCES:/output/SOURCES
+        - ${OUTPUT_DIR}/SPECS:/output/SPECS
