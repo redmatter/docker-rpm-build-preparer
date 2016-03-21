@@ -1,7 +1,7 @@
 FROM alpine
 
 RUN apk update && \
-    apk add subversion openssh-client
+    apk add rsync subversion openssh-client
 
 COPY prepare-source.sh /
 

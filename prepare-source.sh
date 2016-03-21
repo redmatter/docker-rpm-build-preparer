@@ -61,7 +61,8 @@ fi
 
 mkdir ${PACKAGE_NAME}
 
-cp -r ${SOURCE_DIR}/* ./${PACKAGE_NAME}/
+# Allow additional options to be specified via RSYNC_OPTIONS, this is most likely to be used with --exclude arguments.
+rsync -az ${RSYNC_OPTIONS} ${SOURCE_DIR}/* ./${PACKAGE_NAME}
 tar cfz ${TAR_PATH} ${PACKAGE_NAME}
 
 exit 0
