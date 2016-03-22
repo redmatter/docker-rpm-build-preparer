@@ -95,6 +95,7 @@ The following environment variables can be used to control the preparation of th
 |--------------------|-------|
 |APP_NAME|Defines the application name|
 |VERSION|Defines the version|
+|RELEASE|If set, this value will replace the `Release` spec file variable value found in the spec file|
 |SPEC_FILE|The image assumes that there will be a single `\*.spec` file in the root of the source directory.  If this is not the case, the path to the spec file relative to the root of the source directory can be specified with this environment variable|
 |RSYNC_OPTIONS|Used to apply any additional rsync options for the copy of files to the directory to be tarred.  This is expected to be used for the `--exclude` option, to prevent certain files being included in the final RPM.|
 

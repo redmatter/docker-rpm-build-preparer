@@ -48,6 +48,12 @@ fi
 
 cp ${SPEC_FILE} ${SPECS_OUTPUT}
 
+# If the RELEASE environment variable is set, replace the value of the 'Release' spec file variable with the value from
+# the environment variable.
+if [[ ! -z ${RELEASE} ]]; then
+    sed "s/^Release: .*/Release: ${RELEASE}/" -i ${SPECS_OUTPUT}/$(basename ${SPEC_FILE})
+fi
+
 PACKAGE_NAME=${APP_NAME}-${VERSION}
 TAR_PATH=${SOURCES_OUTPUT}/${PACKAGE_NAME}.tar.gz
 
