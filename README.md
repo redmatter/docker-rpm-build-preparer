@@ -4,6 +4,8 @@ Docker image which prepares source code for building into an RPM from a local di
 ## Preface
 All steps in this README assume that the host on which the steps are being run is running Linux.  The steps provide example values which may be modified as necessary for your specific environment.
 
+This image assumes that the spec file is available within the source path provided, and that it contains a single `Source` entry identifying a file of the format `${APP_NAME}-${VERSION}.tar.gz`, which is expected to contain the application source within a folder named `${APP_NAME}` (where `${APP_NAME}` and `${VERSION}` are substituted appropriately).
+
 ## Usage options
 There are two ways to use this image - by pointing it at a local directory which already contains the source to be prepared, or by pointing it at a VCS from which the source can be obtained.
 Building from a directory may be simpler if you have difficulty passing auth credentials to the Docker image, or if you want to build a working copy with local changes.  Building from a VCS is likely to be preferable if building a specific version for release.
